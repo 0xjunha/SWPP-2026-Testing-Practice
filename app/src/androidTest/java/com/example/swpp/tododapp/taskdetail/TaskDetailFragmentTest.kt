@@ -24,7 +24,6 @@ import org.hamcrest.core.IsNot.not
 
 
 @MediumTest
-@ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 class TaskDetailFragmentTest {
     private lateinit var repository: TasksRepository
@@ -51,20 +50,6 @@ class TaskDetailFragmentTest {
 
         // THEN - Task details are displayed on the screen
         // make sure that the title/description are both shown and correct
-        // and make sure the "active" checkbox is shown unchecked
-
-    }
-
-    @Test
-    fun completedTaskDetails_DisplayedInUi() = runTest{
-        // TODO: homework 2
-        // GIVEN - Add completed task to the DB
-
-        // WHEN - Details fragment launched to display task
-
-        // THEN - Task details are displayed on the screen
-        // make sure that the title/description are both shown and correct
-
         // and make sure the "active" checkbox is shown unchecked
 
     }
