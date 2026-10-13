@@ -1,7 +1,8 @@
 # Spec: `<File>.kt`
 
 > Post-conditions are the test oracle: write the expected behavior from intent, not from the code.
-> End each one with `Tested by <test>` if an existing test checks it, or `Tip:` describing the test to write.
+> Tag each post-condition [Unit] if its test runs on the JVM; otherwise tag it [Integration].
+> End each valid case with `Tested by <test>` if an existing test checks it, or `Tip:` describing the test to write.
 
 ## `<function signature>`
 
@@ -12,17 +13,14 @@
 
 **Post-conditions**
 - Success cases
-  - <Result for valid input.> `[Unit]`
-    - Tested by `<TestClass.subject_actionOrInput_result>`
+  - <Result of a direct call for one kind of valid input. Add one per kind, including optional values left empty.> `[Unit | Integration]`
+    - Tested by `<TestClass.subject_actionOrInput_result>` | Tip: Given … / When … / Then …
 - Error cases
-  - <Result for invalid or missing input.> `[Unit]`
-    - Tip: Given … / When … / Then …
+  - <Result of a direct call for input the function must reject. Write "None." if every input is valid.> `[Unit | Integration]`
+    - Tested by `<TestClass.subject_actionOrInput_result>` | Tip: Given … / When … / Then …
 - Edge cases
-  - <Result at boundary values.> `[Unit]`
-    - Tip: Given … / When … / Then …
-- State cases
-  - <What saved data or the screen must look like after the call.> `[Integration]`
-    - Tip: Given … / When … / Then …
+  - <Result of a direct call at, and right next to, each boundary between the Success cases.> `[Unit | Integration]`
+    - Tested by `<TestClass.subject_actionOrInput_result>` | Tip: Given … / When … / Then …
 
 **Undefined behavior** (optional)
 - <Input left undefined, and why.>
