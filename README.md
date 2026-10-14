@@ -1,4 +1,4 @@
-# Week 8 — Testing
+# Week 7 — Testing
 
 **SWPP 2026 Fall**
 
