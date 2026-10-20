@@ -84,23 +84,23 @@ class TasksListBindingsTest {
     }
 
     @Test
-    fun setDueDateLabel_activeWithoutDueDate_clearsAndHides() = onMain {
+    fun setDueDateLabel_activeWithoutDueDate_returnsEmptyLabel() = onMain {
         // GIVEN - Real Android TextView; reference date captured on the same UI thread.
         val view = freshView()
         // WHEN
         setDueDateLabel(view, task(null))
         // THEN
-        assertLabel(view, "", View.GONE)
+        assertEquals("TextView.text must be cleared", "", view.text.toString())
     }
 
     @Test
-    fun setDueDateLabel_nullTask_clearsAndHides() = onMain {
+    fun setDueDateLabel_nullTask_returnsEmptyLabel() = onMain {
         // GIVEN - Real Android TextView; reference date captured on the same UI thread.
         val view = freshView()
         // WHEN
         setDueDateLabel(view, null)
         // THEN
-        assertLabel(view, "", View.GONE)
+        assertEquals("TextView.text must be cleared", "", view.text.toString())
     }
 
     @Test
@@ -145,7 +145,7 @@ class TasksListBindingsTest {
         setDueDateLabel(view, completed)
         assertLabel(view, "CLEAR", View.VISIBLE)
         setDueDateLabel(view, completed.copy(isCompleted = false))
-        assertLabel(view, "", View.GONE)
+        assertEquals("TextView.text must be cleared", "", view.text.toString())
         setDueDateLabel(view, completed)
         assertLabel(view, "CLEAR", View.VISIBLE)
     }
@@ -158,7 +158,7 @@ class TasksListBindingsTest {
         setDueDateLabel(view, task(null, true))
         assertLabel(view, "CLEAR", View.VISIBLE)
         setDueDateLabel(view, null)
-        assertLabel(view, "", View.GONE)
+        assertEquals("TextView.text must be cleared", "", view.text.toString())
     }
 
     @Test
@@ -170,7 +170,7 @@ class TasksListBindingsTest {
         setDueDateLabel(view, task(today.plusDays(2)))
         assertLabel(view, "D-2", View.VISIBLE)
         setDueDateLabel(view, task(null))
-        assertLabel(view, "", View.GONE)
+        assertEquals("TextView.text must be cleared", "", view.text.toString())
     }
 
     @Test
